@@ -1,0 +1,23 @@
+header{
+  height:6%;
+}
+div{
+  background-color:white;
+}
+mat-card{
+  width:50%;
+  margin:auto;
+  background-color: cornflowerblue;
+  height: 90%;
+}
+input{
+  background-color: white;
+  color:black;
+  width: 100%;
+  height: 25px;
+  border: none;
+}
+button{
+  background-color: white;
+  height: 50%;
+}

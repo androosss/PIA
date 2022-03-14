@@ -1,0 +1,14 @@
+<label (click)='pocetna()' style="margin-top: 1rem; margin-left:2rem ; color:lightblue; font-weight: bold; font-style: italic;">Početna strana</label>
+<label (click)='logout()' style="margin-top: 1rem; margin-left:60rem ; color:lightblue; font-weight: bold; font-style: italic;">Izloguj se</label>
+<header style="font-weight: bold; font-size: xxx-large; margin-top: -1rem; margin-left: 29rem; margin-bottom: 3rem; color: lawngreen; font-style: itlaic;">
+  Klub čitalaca
+</header>
+
+<mat-accordion multi="true" style="margin-bottom:2rem; margin-top:5rem;">
+  <mat-expansion-panel *ngFor="let event of events">
+    <mat-expansion-panel-header>
+    <label (click)="redirect(event.naziv)">{{event.naziv}}</label>
+    <label style="margin-left: 30rem;">Napravio {{event.vlasnik}}</label>
+    </mat-expansion-panel-header>
+  </mat-expansion-panel>
+</mat-accordion>

@@ -1,0 +1,12 @@
+mat-card{
+  width:40%;
+  margin:auto;
+  background-color: cornflowerblue;
+}
+input{
+  background-color: white;
+  color:black;
+  width: 60%;
+  height: 25px;
+  border: none;
+}

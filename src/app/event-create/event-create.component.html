@@ -1,0 +1,49 @@
+<label (click)='pocetna()' style="margin-top: 1rem; margin-left:2rem ; color:lightblue; font-weight: bold; font-style: italic;">Početna strana</label>
+<label (click)='logout()' style="margin-top: 1rem; margin-left:60rem ; color:lightblue; font-weight: bold; font-style: italic;">Izloguj se</label>
+<header style="font-weight: bold; font-size: xxx-large; margin-top: -1rem; margin-left: 29rem; margin-bottom: 3rem; color: lawngreen; font-style: itlaic;">
+  Klub čitalaca
+</header>
+
+<mat-vertical-stepper>
+  <mat-step label="Naziv dogadjaja">
+    <input type="text" name='naziv' [(ngModel)]='naziv'>
+  </mat-step>
+  <mat-step label="Tip dogadjaja">
+    <select name="tip" [(ngModel)]="tip" (change)='update()'>
+      <option *ngFor="let mojTip of tipovi">{{mojTip}}</option>
+    </select>
+  </mat-step>
+  <mat-step label="Opis dogadjaja">
+    <input type="text" name='opis' [(ngModel)]='opis'>
+  </mat-step>
+  <mat-step label="Početak dogadjaja">
+    <input type="radio" name="d1" [(ngModel)]="d1" value=0>Danas
+    <input type="radio" name="d1" [(ngModel)]="d1" value=1>Izaberi datum
+    <hr style="visibility: hidden;">
+    <mat-form-field *ngIf="d1==1">
+      <input matInput [matDatepicker]="myDatePicker" name="pocetak" [(ngModel)]="pocetak">
+      <mat-datepicker-toggle [for]='myDatePicker' matSuffix></mat-datepicker-toggle>
+      <mat-datepicker #myDatePicker> </mat-datepicker>
+    </mat-form-field>
+  </mat-step>
+   <mat-step label="Kraj dogadjaja">
+    <mat-form-field>
+      <input matInput [matDatepicker]="myDatePicker1" name="kraj" [(ngModel)]="kraj">
+      <mat-datepicker-toggle [for]='myDatePicker1' matSuffix></mat-datepicker-toggle>
+      <mat-datepicker #myDatePicker1> </mat-datepicker>
+    </mat-form-field>
+  </mat-step>
+  <mat-step label="Učesnici" *ngIf="privatni==1 ">
+     <input type="checkbox" name="ucesnici" [(ngModel)]="ucesnici" value="yes">
+     Dodajte korisnike koje pratite
+  </mat-step>
+  <mat-step label="Unesi dogadjaj">
+    <button mat-raised-button (click)="unesi()" color="primary">
+      Unesi dogadjaj
+    </button>
+  </mat-step>
+</mat-vertical-stepper>
+
+<a style="margin-top: 3rem; color: red; font-weight: bold;">
+  {{message}}
+</a>

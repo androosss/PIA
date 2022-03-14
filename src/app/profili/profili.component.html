@@ -1,0 +1,64 @@
+<label (click)='pocetna()' style="margin-top: 1rem; margin-left:2rem ; color:lightblue; font-weight: bold; font-style: italic;">Početna strana</label>
+<label (click)='logout()' style="margin-top: 1rem; margin-left:60rem ; color:lightblue; font-weight: bold; font-style: italic;">Izloguj se</label>
+<header style="font-weight: bold; font-size: xxx-large; margin-top: -1rem; margin-left: 29rem; margin-bottom: 3rem; color: lawngreen; font-style: itlaic;">
+  Klub čitalaca
+</header>
+<div style='margin-top: 2rem; margin-bottom: 1rem;'>
+  <mat-card>
+    <form>
+      <table>
+        <tr>
+          <th>
+            <label  style="margin-left: 10px;">Username</label>
+          </th>
+          <td>
+            <input matInput type='text' name='username' [(ngModel)]='username'>
+          </td>
+          <th>
+            <label  style="margin-left: 10px;">E-mail</label>
+          </th>
+          <td>
+            <input matInput type='text' name='email' [(ngModel)]='email'>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <label  style="margin-left: 10px;">Ime</label>
+          </th>
+          <td>
+            <input matInput type='text' name='ime' [(ngModel)]='ime'>
+          </td>
+          <th>
+            <label  style="margin-left: 10px; ">Prezime</label>
+          </th>
+          <td>
+            <input matInput type='text' name='prezime' [(ngModel)]='prezime'>
+          </td>
+        </tr>
+          <button mat-raised-button  style="margin-top:1rem" (click)="trazi()" color="primary">Pretraži korisnike</button>
+      </table>
+    </form>
+  </mat-card>
+</div>
+<div style="margin-top:3rem; margin-left:auto; margin-right:auto;  margin-bottom:5rem; width:80%">
+  <table style="width:80%; margin:auto" >
+    <tr  *ngFor='let user of upit'>
+      <td  style="width:150pix;">
+        <mat-card (click)='redirect(user.username)' style="margin-top:2rem; margin-left:auto; margin-right: auto; width:150pix;">
+            {{user.username}}
+            <img [src]='user.imagePath' style=" margin-left:100px; height: 100px;">
+            <hr style="visibility: hidden; margin-top: -1rem;">
+            {{user.ime}} {{user.prezime}}
+            <hr style="visibility: hidden;">
+            {{user.email}}
+        </mat-card>
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+
+
+
+

@@ -1,0 +1,88 @@
+<label (click)='pocetna()' style="margin-top: 1rem; margin-left:2rem ; color:lightblue; font-weight: bold; font-style: italic;">Početna strana</label>
+<label (click)='logout()' style="margin-top: 1rem; margin-left:60rem ; color:lightblue; font-weight: bold; font-style: italic;">Izloguj se</label>
+<header style="font-weight: bold; font-size: xxx-large; margin-top: -1rem; margin-left: 29rem; margin-bottom: 3rem; color: lawngreen; font-style: itlaic;">
+  Klub čitalaca
+</header>
+
+<div>
+  <mat-card>
+    <label style="font-weight:bold;">
+        Naziv dogadjaja:
+    </label>
+    <label style="margin-left:1rem; font-weight:bold;">
+        {{event.naziv}}
+    </label>
+    <label style="font-weight:bold; margin-left: 13rem;">
+        Vlasnik:
+    </label>
+    <label  style="margin-left:1rem; font-weight:bold;">
+        {{event.vlasnik}}
+    </label>
+    <hr style="visibility:hidden">
+    <label style="font-weight:bold;">
+      Traje od
+  </label>
+  <label style="margin-left:1rem; font-weight:bold;">
+      {{event.pocetak.toDateString()}}
+  </label>
+  <label style="font-weight:bold; margin-left: 2rem;">
+      do
+  </label>
+  <label  style="margin-left:1rem; font-weight:bold;">
+      {{event.kraj.toDateString()}}
+  </label>
+  <hr style="visibility:hidden">
+  <button *ngIf='mz==1' mat-raised-button color="primary" (click)="zatvori()">
+    Zatvori dogadjaj
+  </button>
+  <button *ngIf='mo==1' mat-raised-button color="primary" (click)="otvori()">
+    Otvori dogadjaj
+  </button>
+  <button *ngIf='po==1' mat-raised-button color="primary" (click)="zahtevaj()">
+    Zahtev za pristup
+  </button>
+  <a *ngIf='pz==1' style="color: red; font-weight: bold;">
+    Privatni dogadjaj je zavrsen!
+  </a>
+  </mat-card>
+
+  <table *ngIf='vlasnik==1' style="margin:auto; margin-top: 3rem;">
+    <tr *ngFor='let zahtev1 of zahtevi'>
+      <td>
+        {{zahtev1.username}}
+      </td>
+      <td>
+        <button mat-raised-button color="primary" (click)="odobri(zahtev1.username)" style="margin-left: 3rem;">
+          Odobri korisnika
+        </button>
+      </td>
+    </tr>
+  </table>
+<mat-card *ngIf="j==1" style="margin-top: 5rem;">
+  <table>
+    <tr>
+      <td>
+        <input style="width:25rem" type="text" name="kom" [(ngModel)]="kom">
+      </td>
+      <td>
+        <button style="margin-left: 3rem;" mat-raised-button color="primary" (click)="koment()">
+          Komentrariši
+        </button>
+      </td>
+    </tr>
+  </table>
+</mat-card>
+</div>
+<div style="width:60%; margin-top:5rem; margin-left: auto; margin-right: auto;">
+<mat-accordion>
+<mat-expansion-panel *ngFor="let com of coms">
+  <mat-expansion-panel-header >
+    <label>
+      {{com.username}}
+    </label>
+
+  </mat-expansion-panel-header>
+  <label>{{ com.tekst }}</label>
+</mat-expansion-panel>
+</mat-accordion>
+</div>

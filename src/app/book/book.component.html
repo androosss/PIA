@@ -1,0 +1,96 @@
+<label (click)='pocetna()' style="margin-top: 1rem; margin-left:2rem ; color:lightblue; font-weight: bold; font-style: italic;">Početna strana</label>
+<label (click)='logout()' style="margin-top: 1rem; margin-left:60rem ; color:lightblue; font-weight: bold; font-style: italic;">Izloguj se</label>
+<header style="font-weight: bold; font-size: xxx-large; margin-top: -1rem; margin-left: 29rem; margin-bottom: 3rem; color: lawngreen; font-style: itlaic;">
+  Klub čitalaca
+</header>
+<img style='display: block; margin-top:2rem; margin-bottom:2rem; margin-left: auto; margin-right: auto; width: 30%;' [src]='book.imagePath'>
+<div style='margin-top:2rem; margin-bottom:0rem; text-align: center; font-size: x-large;'>{{book.naslov}}</div>
+<div style='margin-top:1rem; margin-bottom:1rem; text-align: center; font-size: large;'>{{book.autori}}</div>
+<div style='margin-top:1rem; margin-bottom:1rem; text-align: center; font-size: large;'>Izdato {{datum}}</div>
+<div style='margin-top:1rem; margin-bottom:1rem; text-align: center; font-size: large;'>{{book.zanr1}} {{book.zanr2}} {{book.zanr3}} </div>\
+<div style='margin-top:-2rem; margin-bottom:1rem; text-align: center; font-size: large;'>{{book.opis}}</div>
+<div style='margin-left:36rem'>
+  <ngb-rating [(rate)]="vrednostocene " style="margin: 0 auto;" [max]=10 readonly='true'>
+
+  </ngb-rating> <hr style='visibility: hidden;'>
+  <button mat-raised-button  style=" margin-left:-8rem; margin-top:-3rem" (click)="citaj()" color="primary">Počni sa čitanjem</button>
+  <button mat-raised-button  style="margin-left:1rem; margin-top:-3rem" (click)="zavrsi()" color="primary">Završi čitanje</button>
+  <button mat-raised-button  style="margin-left:1rem; margin-top:-3rem" (click)="lista()" color="primary">Lista za čitanje</button>
+</div>
+<div *ngIf="bu && bu.tip==1">
+<table style="margin-top:1rem; margin-left:auto ; margin-right: auto;">
+  <tr>
+    <th>
+      Trenutna strana
+    </th>
+    <th>
+      Ukupno strana
+    </th>
+  </tr>
+  <tr>
+    <td>
+      <input type="number" name="stigao" [(ngModel)]="stigo" (change)='update()'>
+    </td>
+    <td>
+      <input type="number" name="strana" [(ngModel)]="strana" (change)='update()'>
+    </td>
+  </tr>
+</table>
+<mat-progress-bar  style="width: 40%; margin-top: 1rem; margin-left:auto; margin-right:auto; margin-bottom:5rem;" mode="determinate" [value]="progr"></mat-progress-bar>
+</div>
+
+<div *ngIf="myCom==null && bu && ((bu.tip==1 && 2*stigo>strana) || (bu.tip==0))">
+  <form>
+    <table style="margin-top:1rem; margin-left:auto ; margin-right: auto;">
+      <tr>
+        <td>
+          <ngb-rating [(rate)]="ocena" [max]=10 [readonly]='false'>
+
+          </ngb-rating>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <textarea name="tekst" [(ngModel)]="tekst"></textarea>
+        </td>
+        <td>
+          <button mat-raised-button color="primary" (click)="komentarisi()" style="margin-left:10rem ;">
+            Komentarisi
+          </button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+
+<div style='margin-left : auto; margin-right: auto; margin-top: 5rem; margin-bottom:5rem; width:50%'>
+  <mat-accordion multi="true" *ngIf="(coms.length > 0) || (myCom!=null)">
+    <mat-expansion-panel *ngIf="myCom">
+      <mat-expansion-panel-header>
+        <label (click)="reduser(myCom.username)">
+          {{myCom.username}}
+        </label>
+      </mat-expansion-panel-header>
+       <textarea [(readOnly)]='read'>{{myCom.tekst}}</textarea>
+       <ngb-rating style='margin-left: 3rem;' [(rate)]="myCom.ocena" [max]=10 [(readonly)]='read'>
+
+      </ngb-rating>
+       <button mat-raised-button color="primary" (click)="promeni()" style="margin-left:5rem ;">
+        Promeni komentar
+      </button>
+    </mat-expansion-panel>
+    <mat-expansion-panel *ngFor="let com of coms">
+      <mat-expansion-panel-header >
+        <label (click)="reduser(com.username)">
+          {{com.username}}
+        </label>
+
+      </mat-expansion-panel-header>
+      <textarea readonly="true">{{ com.tekst }}</textarea>
+      <ngb-rating style='margin-left: 5rem;' [(rate)]="com.ocena" [max]=10 readonly='true'>
+
+      </ngb-rating>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <p style='text-align:center' class="info-text mat-body-1" *ngIf="coms.length <= 0 && myCom==null">Nema komentara!</p>
+</div>

@@ -1,0 +1,44 @@
+<header style="font-weight: bold; font-size: xxx-large; margin-top: 1rem; margin-left: 29rem; color: lawngreen; font-style: itlaic;">
+  Klub čitalaca
+</header>
+<div>
+  <mat-card>
+  <form>
+    <table>
+      <tr>
+        <th>
+          <label>Korisničko ime</label>
+        </th>
+        <td>
+          <input matInput type='text' name='username' [(ngModel)]='username'>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <label style="pointer-events: none;">Lozinka</label>
+        </th>
+        <td>
+          <input matInput style="pointer-events: all;" type='password' name='password' [(ngModel)]='password'>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button mat-raised-button (click)="login()" color="primary">Uloguj se</button>
+        </td>
+      </tr>
+    </table>
+    <label style="color:red; font-weight: bold; margin-top:20pix">
+      {{message}}
+    </label>
+  </form>
+  </mat-card>
+</div>
+<div style="margin-bottom: 5rem; margin-top: 30%;">
+
+
+<nav >
+  <a style="margin-left: 15rem; font-size:50; font-style: italic;" routerLink='/register'>Registruj se</a>
+  <a style="margin-left: 15rem; font-size:40; font-style: italic;" routerLink='/guest'>Nastavi kao gost</a>
+  <a style="margin-left: 15rem; font-size:40; font-style: italic;" routerLink='/password'>Zaboravljena lozinka</a>
+</nav>
+</div>

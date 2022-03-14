@@ -1,0 +1,56 @@
+<header style="font-weight: bold; font-size: xxx-large; margin-top: 1rem; margin-left: 29rem; color: lawngreen; font-style: itlaic;">
+  Klub čitalaca
+</header>
+<div style='margin-top: 2rem; margin-bottom: 1rem;'>
+  <mat-card>
+    <form>
+      <table>
+        <tr>
+          <th>
+            <label  style="margin-left: 10px; margin-top:10px;">Naslov</label>
+          </th>
+          <td>
+            <input matInput type='text' name='naslov' [(ngModel)]='naslov'>
+          </td>
+          <th>
+            <label  style="margin-left: 10px;">Autori</label>
+          </th>
+          <td>
+            <input matInput type='text' name='autori' [(ngModel)]='autori'>
+          </td>
+          <select style="margin-left:10px" name='s1' [(ngModel)]='zanr1'>
+            <option selected="selected" hidden>Izaberite žanr</option>
+            <option *ngFor='let mojZanr of zanr'>
+              {{mojZanr.ime}}
+            </option>
+          </select>
+        </tr>
+          <button mat-raised-button  style="margin-top:1rem" (click)="trazi()" color="primary">Pretraži knjige</button>
+      </table>
+    </form>
+  </mat-card>
+</div>
+
+
+
+<table style="margin:auto">
+  <tr style='margin-top: 25pix;' *ngFor='let knjiga of prikazano'
+  [class.neod]='knjiga.odobreno==0'>
+    <div style='height: 150; width: 150;'>
+      <label style=' margin-left:10px; margin-top:10px;' (click)='redirect(knjiga.naslov,knjiga.odobreno)'>{{knjiga.naslov}}</label>
+      <hr style='visibility: hidden;'>
+      <img style="height:200px; margin-left:10px; margin-top: -20px;" [src]='knjiga.imagePath' (click)='redirect(knjiga.naslov,knjiga.odobreno)'>
+    </div>
+  </tr>
+</table>
+<mat-paginator [length]='brojKnjiga' [pageSize]='poStrani' [pageSizeOptions]='opcije' (page)='onChange($event)'
+*ngIf='brojKnjiga>0'>
+
+</mat-paginator>
+
+
+
+<nav>
+  <a style="margin-left: 20rem; font-size:50; font-style: italic;" routerLink='/register'>Registruj se</a>
+  <a style="margin-left: 20rem; font-size:50; font-style: italic;" routerLink='/guestEvent'>Pogledaj dogadjaje</a>
+</nav>

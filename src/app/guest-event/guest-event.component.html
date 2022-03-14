@@ -1,0 +1,16 @@
+<header style="font-weight: bold; font-size: xxx-large; margin-top: 1rem; margin-bottom: 5rem; margin-left: 29rem; color: lawngreen; font-style: itlaic;">
+  Klub čitalaca
+</header>
+
+<mat-accordion multi="true" style="margin-bottom:2rem; margin-top:5rem;">
+  <mat-expansion-panel *ngFor="let event of events">
+    <mat-expansion-panel-header>
+    <label>{{event.naziv}}</label>
+    <label style="margin-left: 40rem;">{{event.tip}}</label>
+    </mat-expansion-panel-header>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<nav style="position:absolute; bottom:0; width:100%; height:60px;">
+  <a style="margin-left: 35rem; font-size:50; font-style: italic;" routerLink='/register'>Registruj se</a>
+</nav>

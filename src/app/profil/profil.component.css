@@ -1,0 +1,26 @@
+.nouser{
+  visibility:hidden;
+}
+.nomod{
+  visibility: hidden;
+}
+.notmy{
+  visibility: hidden;
+}
+.moj{
+  visibility: hidden;
+}
+.moj1{
+  visibility: hidden;
+}
+.in{
+  visibility: hidden;
+}
+mat-card{
+  width:40%;
+  margin:auto;
+  background-color: cornflowerblue;
+}
+.noread{
+  visibility: hidden;
+}

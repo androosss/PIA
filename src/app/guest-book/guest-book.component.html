@@ -1,0 +1,33 @@
+<header style="font-weight: bold; font-size: xxx-large; margin-top: 1rem; margin-left: 29rem; color: lawngreen; font-style: itlaic;">
+    Klub čitalaca
+  </header>
+  <img style='display: block; margin-top:2rem; margin-bottom:2rem; margin-left: auto; margin-right: auto; width: 30%;' [src]='book.imagePath'>
+  <div style='margin-top:2rem; margin-bottom:0rem; text-align: center; font-size: x-large;'>{{book.naslov}}</div>
+  <div style='margin-top:1rem; margin-bottom:1rem; text-align: center; font-size: large;'>{{book.autori}}</div>
+  <div style='margin-top:1rem; margin-bottom:1rem; text-align: center; font-size: large;'>Izdato {{datum}}</div>
+  <div style='margin-top:1rem; margin-bottom:1rem; text-align: center; font-size: large;'>{{book.zanr1}} {{book.zanr2}} {{book.zanr3}} </div>\
+  <div style='margin-top:-2rem; margin-bottom:1rem; text-align: center; font-size: large;'>{{book.opis}}</div>
+  <div style='margin-left:36rem'>
+    <ngb-rating [(rate)]="vrednostocene " style="margin: 0 auto;" [max]=10 readonly='true'>
+
+    </ngb-rating>
+  </div>
+  <div style='margin-left : auto; margin-right: auto; margin-top: 5rem; width:50%'>
+    <mat-accordion multi="true" *ngIf="coms.length > 0">
+      <mat-expansion-panel *ngFor="let com of coms">
+        <mat-expansion-panel-header >
+          <label>
+            Anonimus
+          </label>
+          <ngb-rating style='margin-left: 5rem;' [(rate)]="com.ocena" [max]=10 readonly='true'>
+
+          </ngb-rating>
+        </mat-expansion-panel-header>
+        <p>{{ com.tekst }}</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <p style='text-align:center' class="info-text mat-body-1" *ngIf="coms.length <= 0">Nema komentara!</p>
+  </div>
+  <nav style='margin-bottom: 3rem; margin-top:7rem'>
+    <a style="margin-left: 36rem; margin-bottom:3rem; font-size:50; font-style: italic; font-size: large;" routerLink='/register'>Registruj se</a>
+  </nav>

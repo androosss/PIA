@@ -1,0 +1,112 @@
+<label *ngIf="my==0" (click)='pocetna()' style="margin-top: 1rem; margin-left:2rem ; color:lightblue; font-weight: bold; font-style: italic;">Početna strana</label>
+<label (click)='logout()' style="margin-top: 1rem; margin-left:60rem ; color:lightblue; font-weight: bold; font-style: italic;">Izloguj se</label>
+<header style="font-weight: bold; font-size: xxx-large; margin-top: -1rem; margin-left: 29rem; margin-bottom: 3rem; color: lawngreen; font-style: itlaic;">
+  Klub čitalaca
+</header>
+<mat-card>
+    <img [src]='myUser.imagePath' style='height: 120px;'>
+   <table>
+      <tr>
+        <th>
+          <label>Korisničko ime: {{myUser.username}}</label>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <label>Ime: {{myUser.ime}}</label>
+        </th>
+        <th>
+          <label>Prezime: {{myUser.prezime}}</label>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <label>Grad: {{myUser.grad}}</label>
+        </th>
+        <th>
+          <label>Drzava: {{myUser.drzava}}</label>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          Datum rodjenja: {{datumr}}
+        </th>
+      </tr>
+      <tr>
+        <th>
+          Email: {{myUser.email}}
+        </th>
+      </tr>
+      <tr>
+        <th>
+         {{datuma}}
+        </th>
+      </tr>
+      <tr>
+        <td>
+          <button [class.moj]='my<1' mat-raised-button (click)="change()" color="primary">Promeni podatke</button>
+        </td>
+        <td>
+          <button [class.notmy]='my>0' mat-raised-button (click)="follow()" color="primary">{{buttonText}}</button>
+        </td>
+      </tr>
+    </table>
+  </mat-card>
+  <div [class.moj1]='my<1' style='width: 40%; margin:auto; margin-top: 3rem; margin-bottom: 8rem;' >
+    <input type="radio" name='vrsta' value='0' [(ngModel)]='vrsta'> Pročitane knjige
+    <input type="radio" name='vrsta' style='margin-left: 1rem;' value='1' [(ngModel)]='vrsta'> Trenutno čitate
+    <input type="radio" name='vrsta' style='margin-left: 1rem;' value='2' [(ngModel)]='vrsta'> Lista za čitanje
+    <hr style='visibility:hidden'>
+    <button mat-raised-button (click)="show()" color="primary">Prikaži knjige</button>
+    <table style="margin:auto">
+      <tr style='margin-top: 25pix;' *ngFor='let knjiga of prikazano'
+      [class.neod]='knjiga.odobreno==0'>
+        <div style='height: 150; width: 150;'>
+          <label style=' margin-left:10px; margin-top:10px;' (click)='redirect(knjiga.naslov)'>{{knjiga.naslov}}</label>
+          <hr style='visibility: hidden;'>
+          <img  style="height:200px; margin-left:10px; margin-top: -20px;" [src]='knjiga.imagePath' (click)='redirect(knjiga.naslov,knjiga.odobreno)'>
+          <button style='margin-left: 2rem;' [class.in]='bu<1' mat-raised-button (click)="remove(knjiga.naslov)" color="primary">Ukloni knjigu</button>
+        </div>
+      </tr>
+    </table>
+    <mat-paginator [length]='brojKnjiga' [pageSize]='poStrani' [pageSizeOptions]='opcije' (page)='onChange($event)'
+      *ngIf='brojKnjiga>0' style="margin-left: -5rem;">
+    </mat-paginator>
+    <div style='margin-top:2rem' [class.noread]='ca<1'>
+      <canvas baseChart
+        [options]='pieChartOptions'
+        [data]="pieChartData"
+        [labels]="pieChartLabels"
+        [chartType]="pieChartType"
+        [legend]="pieChartLegend"
+        [colors]="pieChartColors">
+      </canvas>
+    </div>
+   </div>
+   <div style="width: 60%; margin-right: auto; margin-left:auto ; margin-bottom: 4rem;">
+    <mat-accordion multi="true" *ngIf="(coms.length > 0)">
+    <mat-expansion-panel *ngFor="let com of coms">
+      <mat-expansion-panel-header >
+        <label (click)="redirect(com.naslov)">
+          {{com.naslov}}
+        </label>
+
+      </mat-expansion-panel-header>
+      <textarea readonly="true">{{ com.tekst }}</textarea>
+      <ngb-rating style='margin-left: 5rem;' [(rate)]="com.ocena" [max]=10 readonly='true'>
+
+      </ngb-rating>
+    </mat-expansion-panel>
+  </mat-accordion>
+   </div>
+  <nav style="margin-bottom:3rem">
+    <a style="margin-left: 3rem; margin-top: 0rem; font-size:50; font-style: italic;" routerLink='/books'>Pretraga knjiga</a>
+    <a style="margin-left: 3rem; margin-top: 0rem; font-size:50; font-style: italic;" routerLink='/profili'>Pretraga korisnika</a>
+    <a style="margin-left: 3rem; margin-top: 0rem; font-size:50; font-style: italic;" routerLink='/bookCreate'>Dodaj knjigu</a>
+    <a style="margin-left: 3rem; margin-top: 0rem; font-size:50; font-style: italic;" routerLink='/eventCreate'>Dodaj dogadjaj</a>
+    <a style="margin-left: 3rem; margin-top: 0rem; font-size:50; font-style: italic;" routerLink='/events'>Pogledaj dogadjaje</a>
+    <a style="margin-left: 3rem; margin-top: 0rem; font-size:50; font-style: italic;" *ngIf="tip>0" routerLink='/bookAprove'>Odobravanje knjiga</a>
+    <a style="margin-left: 3rem; margin-top: 0rem; font-size:50; font-style: italic;" *ngIf="tip>1" routerLink='/admin'>Administracija</a>
+
+</nav>
+
