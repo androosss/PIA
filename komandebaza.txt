@@ -1,0 +1,4 @@
+cd mongodb-win32-x86_64-windows-4.4.1
+cd bin
+mongo "mongodb+srv://cluster0.dmofk.mongodb.net/test2" --username androsss
+show collections
